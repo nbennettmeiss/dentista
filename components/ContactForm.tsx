@@ -11,7 +11,8 @@ const ContactForm: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const DENTIST_PHONE = "5215551234567";
+  // Número actualizado a +569 78834689
+  const DENTIST_PHONE = "56978834689";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
