@@ -11,12 +11,25 @@ const ContactForm: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const DENTIST_PHONE = "5215551234567";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form data:', formData);
+    const whatsappMessage = `HORIZON DENTAL - NUEVA CITA:%0A` +
+      `--------------------------%0A` +
+      `PACIENTE: ${formData.name}%0A` +
+      `TEL: ${formData.phone}%0A` +
+      `INTERÉS: ${formData.service || 'Chequeo General'}%0A` +
+      `NOTAS: ${formData.message || 'N/A'}`;
+
+    const whatsappUrl = `https://wa.me/${DENTIST_PHONE}?text=${whatsappMessage}`;
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 5000);
-    setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+      setIsSubmitted(false);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    }, 1200);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -26,140 +39,100 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-16">
+      <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div>
-          <h2 className="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-3">Agenda Ahora</h2>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Tu Sonrisa Comienza Aquí</h2>
-          <p className="text-slate-600 mb-10 text-lg">
-            Rellena el formulario y nuestro equipo se pondrá en contacto contigo en menos de 24 horas para confirmar tu cita.
+          <h2 className="text-sky-500 font-extrabold tracking-[0.3em] uppercase text-[11px] mb-4">Comenzamos Juntos</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800 mb-8 tracking-tight">Tu nueva sonrisa <br/> a un clic.</h2>
+          <p className="text-slate-400 mb-12 text-lg font-medium leading-relaxed max-w-md opacity-90">
+            Estamos aquí para escucharte. Resolvemos tus dudas de forma personalizada y sin presiones. Conéctate con nosotros.
           </p>
 
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 flex-shrink-0">
-                <i className="fas fa-map-marker-alt text-xl"></i>
+          <div className="space-y-8">
+            <div className="flex items-center gap-6 group">
+              <div className="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center text-sky-400 shadow-sm transition-all group-hover:bg-sky-100">
+                <i className="fas fa-map-marker-alt text-lg"></i>
               </div>
               <div>
-                <h4 className="font-bold text-slate-800">Nuestra Ubicación</h4>
-                <p className="text-slate-600">Av. de la Libertad 123, Distrito Central, Ciudad Capital</p>
+                <h4 className="font-bold text-slate-700 text-sm mb-0.5">Centro de Bienestar</h4>
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Edificio Skyline, Suite 402</p>
               </div>
             </div>
             
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 flex-shrink-0">
-                <i className="fas fa-phone-alt text-xl"></i>
+            <div className="flex items-center gap-6 group">
+              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-400 shadow-sm transition-all group-hover:bg-emerald-100">
+                <i className="fab fa-whatsapp text-xl"></i>
               </div>
               <div>
-                <h4 className="font-bold text-slate-800">Llámanos</h4>
-                <p className="text-slate-600">+52 (555) 123-4567</p>
-                <p className="text-sm text-blue-600 font-semibold">Urgencias 24/7 disponible</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 flex-shrink-0">
-                <i className="fas fa-clock text-xl"></i>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-800">Horario de Atención</h4>
-                <p className="text-slate-600">Lun - Vie: 9:00 AM - 8:00 PM</p>
-                <p className="text-slate-600">Sáb: 10:00 AM - 2:00 PM</p>
+                <h4 className="font-bold text-slate-700 text-sm mb-0.5">Respuesta Instantánea</h4>
+                <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Atención Premium vía WhatsApp</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100">
+        <div className="glass-bright p-8 md:p-12 rounded-[3.5rem] shadow-2xl shadow-sky-900/5 relative border-white">
           {isSubmitted ? (
-            <div className="h-full flex flex-col items-center justify-center text-center py-12">
-              <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 text-4xl animate-bounce">
-                <i className="fas fa-check"></i>
+            <div className="h-full flex flex-col items-center justify-center text-center py-16">
+              <div className="w-20 h-20 bg-sky-50 text-sky-500 rounded-full flex items-center justify-center mb-8 text-3xl shadow-inner animate-bounce">
+                <i className="fas fa-paper-plane"></i>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">¡Solicitud Enviada!</h3>
-              <p className="text-slate-600">Nos pondremos en contacto contigo pronto para confirmar tu horario.</p>
-              <button
-                onClick={() => setIsSubmitted(false)}
-                className="mt-8 text-blue-600 font-bold hover:underline"
-              >
-                Enviar otra solicitud
-              </button>
+              <h3 className="text-2xl font-extrabold text-slate-800 mb-2">¡Enviando datos!</h3>
+              <p className="text-slate-400 font-medium">Conectando con nuestro equipo...</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo</label>
                   <input
                     type="text"
                     name="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50"
-                    placeholder="Ej. Juan Pérez"
+                    className="w-full bg-slate-50/50 border border-slate-100 px-6 py-4 rounded-2xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500/10 focus:border-sky-300 transition-all font-medium placeholder:text-slate-300 shadow-inner"
+                    placeholder="Tu nombre"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1">Teléfono</label>
                   <input
                     type="tel"
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50"
-                    placeholder="555-123-4567"
+                    className="w-full bg-slate-50/50 border border-slate-100 px-6 py-4 rounded-2xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500/10 focus:border-sky-300 transition-all font-medium placeholder:text-slate-300 shadow-inner"
+                    placeholder="Tu móvil"
                   />
                 </div>
               </div>
               
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico</label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50"
-                  placeholder="tu@email.com"
-                />
-              </div>
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                className="w-full bg-slate-50/50 border border-slate-100 px-6 py-4 rounded-2xl text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/10 focus:border-sky-300 transition-all font-medium shadow-inner appearance-none"
+              >
+                <option value="">¿En qué módulo te interesa?</option>
+                <option value="Armonía">Estética Dental</option>
+                <option value="Higiene">Limpieza Avanzada</option>
+                <option value="Ortodoncia">Invisalign Soft</option>
+                <option value="Checkup">Consulta General</option>
+              </select>
 
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Servicio de Interés</label>
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50 appearance-none"
-                >
-                  <option value="">Selecciona un servicio</option>
-                  <option value="limpieza">Limpieza Dental</option>
-                  <option value="blanqueamiento">Blanqueamiento</option>
-                  <option value="ortodoncia">Ortodoncia</option>
-                  <option value="implante">Implante</option>
-                  <option value="otro">Otros</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">Mensaje (Opcional)</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50"
-                  placeholder="¿En qué podemos ayudarte?"
-                ></textarea>
-              </div>
+              <textarea
+                name="message"
+                rows={3}
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full bg-slate-50/50 border border-slate-100 px-6 py-4 rounded-2xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500/10 focus:border-sky-300 transition-all font-medium placeholder:text-slate-300 shadow-inner"
+                placeholder="Alguna nota adicional"
+              ></textarea>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 transform hover:-translate-y-1"
+                className="w-full py-5 btn-gradient text-white rounded-2xl font-black text-sm uppercase tracking-[0.25em] shadow-lg flex items-center justify-center gap-3 mt-4"
               >
-                Enviar Solicitud
+                Solicitar Reserva <i className="fab fa-whatsapp text-lg opacity-90"></i>
               </button>
             </form>
           )}

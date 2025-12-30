@@ -1,39 +1,78 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentalCare Plus - Tu Sonrisa, Nuestra Pasión</title>
-    <!-- Favicon básico para evitar error 404 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦷</text></svg>">
+    <title>DentalCare Horizon | Innovación y Bienestar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Outfit:wght@300;400;500;700&display=swap');
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #334155;
         }
-        h1, h2, h3, .font-poppins {
-            font-family: 'Poppins', sans-serif;
+        
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
         }
-        .scroll-smooth {
-            scroll-behavior: smooth;
+
+        .glass-bright {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.03);
+        }
+
+        .aurora-bg {
+            background: 
+                radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(165, 243, 252, 0.1) 0%, transparent 40%);
+        }
+
+        @keyframes float-soft {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float-soft {
+            animation: float-soft 6s ease-in-out infinite;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-gradient:hover {
+            filter: brightness(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -8px rgba(56, 189, 248, 0.3);
+        }
+
+        .text-soft-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@19.0.0",
-        "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-        "react/": "https://esm.sh/react@19.0.0/"
-      }
-    }
-    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
 </head>
-<body class="bg-slate-50 text-slate-900 scroll-smooth">
+<body class="aurora-bg">
     <div id="root"></div>
-    <!-- Carga explícita del módulo principal -->
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'services', 'about', 'testimonials', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -33,22 +33,22 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen text-slate-900 selection:bg-cyan-100 selection:text-cyan-900">
       <Navbar activeSection={activeSection} />
-      <main className="flex-grow">
+      <main>
         <section id="home">
           <Hero />
         </section>
-        <section id="services" className="py-20 bg-white">
+        <section id="services" className="py-24 relative overflow-hidden">
           <Services />
         </section>
-        <section id="about" className="py-20 bg-slate-50">
+        <section id="about" className="py-24 bg-white/40">
           <About />
         </section>
-        <section id="testimonials" className="py-20 bg-white">
+        <section id="testimonials" className="py-24">
           <Testimonials />
         </section>
-        <section id="contact" className="py-20 bg-slate-50">
+        <section id="contact" className="py-24">
           <ContactForm />
         </section>
       </main>
